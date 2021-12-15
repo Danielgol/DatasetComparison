@@ -23,6 +23,9 @@ def calculate(hyps, refs):
     for i in hyps[0]:
         print("'",i,"'")
 
+    for i in refs[0]:
+        print("'",i,"'")
+
     h = [" ".join(hyp) for hyp in hyps]
     r = [" ".join(ref) for ref in refs]
 
