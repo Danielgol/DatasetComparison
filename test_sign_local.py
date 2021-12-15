@@ -33,10 +33,10 @@ def calculate(hyps, refs):
         i_bleu = compute_cvpr_bleu(i_hyp, i_ref)
         i_rouge = rouge.rouge(i_hyp, i_ref)
 
-        print("hyp:",h[i],"\nref:",r[i])
+        #print("hyp:",h[i],"\nref:",r[i])
         #print("Teste 2")
         #print('performance: {:.2f} {}'.format(i_rouge['rouge_l/f_score']*100 ,' '.join([str(b) for b in i_bleu])))
-        print("\n")
+        #print("\n")
 
     #print('{} set has {} samples,\n'
     #        'sacrebleu: {},\n'
