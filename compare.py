@@ -27,6 +27,7 @@ resultado_avg = list(map(lambda elem: elem.split('.')[0], avg))
 # ESTUDAR O TSPNET PARA PEGAR O BLEU E O ROUGE DE CADA FRASE INDIVIDUAL
 # PARA SABER QUAIS FRASES SÃO AS MELHORES
 
+print(len(frase), len(resultado_avg))
 calculate(frase, resultado_avg)
 
 #with open('comparison.txt', 'w') as f:
