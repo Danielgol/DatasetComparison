@@ -5,6 +5,7 @@ import os
 import random
 import sys
 
+import pandas as pd
 import numpy as np
 import torch
 
@@ -26,6 +27,8 @@ def calculate(hyps, refs):
     bleu = compute_cvpr_bleu(h, r)
     rouge_score = rouge.rouge(h, r)
 
+    df = pd.DataFrame()
+
     for i in range(len(h)):
         i_hyp = [h[i]]
         i_ref = [r[i]]
@@ -33,7 +36,7 @@ def calculate(hyps, refs):
         i_rouge = rouge.rouge(i_hyp, i_ref)
         print("hyp:",h[i],"\nref:",r[i])
         print('performance: {:.2f} {}'
-            .format(rouge_score['rouge_l/f_score']*100 ,' '.join([str(b) for b in i_bleu])))
+            .format(i_rouge['rouge_l/f_score']*100 ,' '.join([str(b) for b in i_bleu])))
         print("\n")
 
     #print('{} set has {} samples,\n'
