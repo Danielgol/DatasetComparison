@@ -17,18 +17,8 @@ from bleu_local import compute_bleu
 def calculate(hyps, refs):
     tokenize = sacrebleu.DEFAULT_TOKENIZER
 
-    hyps = list(map(lambda elem: list(filter(('').__ne__, elem.split(' '))) , hyps))
+    hyps = list(map(lambda elem: list(filter(('').__ne__, elem.split(' '))), hyps))
     refs = list(map(lambda elem: list(filter(('').__ne__, elem.split(' '))), refs))
-
-    for i in hyps[0]:
-        print("'",repr(i),"'")
-    for i in hyps[1]:
-        print("'",repr(i),"'")
-
-    for i in refs[0]:
-        print("'",repr(i),"'")
-    for i in refs[1]:
-        print("'",repr(i),"'")
 
     h = [" ".join(hyp) for hyp in hyps]
     r = [" ".join(ref) for ref in refs]
@@ -45,7 +35,7 @@ def calculate(hyps, refs):
         i_bleu = compute_cvpr_bleu(i_hyp, i_ref)
         i_rouge = rouge.rouge(i_hyp, i_ref)
 
-        print("hyp: ",h[i],"\nref:",r[i])
+        print("hyp:",h[i],"\nref:",r[i])
         print('performance: {:.2f} {}'
             .format(i_rouge['rouge_l/f_score']*100 ,' '.join([str(b) for b in i_bleu])))
         print("\n")
