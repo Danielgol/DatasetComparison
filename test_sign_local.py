@@ -27,7 +27,7 @@ def calculate(hyps, refs):
     rouge_score = rouge.rouge(h, r)
 
     for i in range(len(h)):
-        print(h[i], r[i]+"\n")
+        print("hyp:",h[i],"\nref:",r[i]+"\n\n")
 
     #print('{} set has {} samples,\n'
     #        'sacrebleu: {},\n'
