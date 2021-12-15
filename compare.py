@@ -1,36 +1,38 @@
 from test_sign_local import calculate
 
-text_file = open("./results.txt", "r")
-lines = text_file.readlines()
-lines = list(filter(('\n').__ne__, lines))
 
-video = []
-for line in lines:
-	if "642" in line:
-		break
-	video.append(line)
+def comparison(path_1, path_2):
+	text_file = open(path_1, "r")
+	lines = text_file.readlines()
+	lines = list(filter(('\n').__ne__, lines))
 
-resultado_video = list(map(lambda elem: elem.split('.')[0], video))
-frase = list(map(lambda elem: elem.split('.')[1], video))
+	first = []
+	for line in lines:
+		if "642" in line:
+			break
+		first.append(line)
 
-text_file = open("./avg-aligned.txt", "r")
-lines = text_file.readlines()
-lines = list(filter(('\n').__ne__, lines))
+	resultado_first = list(map(lambda elem: elem.split('.')[0], first))
+	frase = list(map(lambda elem: elem.split('.')[1], first))
 
-avg = []
-for line in lines:
-	if "642" in line:
-		break
-	avg.append(line)
-resultado_avg = list(map(lambda elem: elem.split('.')[0], avg))
 
-# ESTUDAR O TSPNET PARA PEGAR O BLEU E O ROUGE DE CADA FRASE INDIVIDUAL
-# PARA SABER QUAIS FRASES SÃO AS MELHORES
 
-calculate(frase, resultado_avg)
+	text_file = open(path_2, "r")
+	lines = text_file.readlines()
+	lines = list(filter(('\n').__ne__, lines))
 
-#with open('comparison.txt', 'w') as f:
-#	for i in range(len(frase)):
-#		f.write( str(frase[i])+":\n" )
-#		f.write( str(resultado_avg[i])+" ||| "+str(resultado_video[i]) )
-#		f.write("\n\n")
+	second = []
+	for line in lines:
+		if "642" in line:
+			break
+		second.append(line)
+
+	resultado_second = list(map(lambda elem: elem.split('.')[0], second))
+
+	calculate(frase, resultado_second)
+
+	#with open('comparison.txt', 'w') as f:
+	#	for i in range(len(frase)):
+	#		f.write( str(frase[i])+":\n" )
+	#		f.write( str(resultado_avg[i])+" ||| "+str(resultado_video[i]) )
+	#		f.write("\n\n")
