@@ -21,10 +21,10 @@ def calculate(hyps, refs):
     refs = list(map(lambda elem: list(filter(('\t').__ne__, elem.split(' '))), refs))
 
     for i in hyps[0]:
-        print("'",i,"'")
+        print("'",repr(i),"'")
 
     for i in refs[0]:
-        print("'",i,"'")
+        print("'",repr(i),"'")
 
     h = [" ".join(hyp) for hyp in hyps]
     r = [" ".join(ref) for ref in refs]
