@@ -13,10 +13,16 @@ import rouge_local as rouge
 from bleu_local import compute_bleu
 
 
-def calculate(h, r):
+def calculate(hyps, refs):
     tokenize = sacrebleu.DEFAULT_TOKENIZER
 
-    sacrebleu_score, _, _ = sacrebleu.corpus_bleu(h, [r], tokenize=tokenize)
+    hyps = list(map(lambda elem: elem.split(' ')), hyps)
+    refs = list(map(lambda elem: elem.split(' ')), refs)
+
+    h = [" ".join(hyp) for hyp in hyps]
+    r = [" ".join(ref) for ref in refs]
+
+    sacrebleu_score, _, _ = sacrebleu.corpus_bleu(h, [r], tokenize=tokenize), hyps, refs
     bleu = compute_cvpr_bleu(h, r)
     rouge_score = rouge.rouge(h, r)
 
