@@ -13,7 +13,7 @@ import rouge_local as rouge
 from bleu_local import compute_bleu
 
 
-def calculate(hyps, refs):
+def calculate(h, r):
     tokenize = sacrebleu.DEFAULT_TOKENIZER
 
     sacrebleu_score, _, _ = sacrebleu.corpus_bleu(h, [r], tokenize=tokenize)
