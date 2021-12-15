@@ -63,8 +63,7 @@ def compute_cvpr_bleu(hyps, refs, max_order=4):
     bleu_all_orders = []
 
     for i in list(range(1, max_order+1)):
-        bleu, precisions, bp, ratio, translation_length, reference_length =
-        compute_bleu(tokenized_refs, tokenized_hyps, max_order=i)
+        bleu, precisions, bp, ratio, translation_length, reference_length = compute_bleu(tokenized_refs, tokenized_hyps, max_order=i)
         if i == 4:
             print ('precisions: {}'.format([str(round(p*100, 2)) for p in precisions]))
         bleu_all_orders.append(round(bleu * 100, 2))
