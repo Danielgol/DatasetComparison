@@ -27,18 +27,37 @@ def calculate(hyps, refs):
     bleu = compute_cvpr_bleu(h, r)
     rouge_score = rouge.rouge(h, r)
 
-
+    _hypothesis = []
+    _reference = []
+    _rouge = []
+    _bleu1 = []
+    _bleu2 = [] 
+    _bleu3 = [] 
+    _bleu4 = [] 
 
     for i in range(len(h)):
         i_hyp = [h[i]]
         i_ref = [r[i]]
-        i_bleu = compute_cvpr_bleu(i_hyp, i_ref)
         i_rouge = rouge.rouge(i_hyp, i_ref)
+        i_bleu = compute_cvpr_bleu(i_hyp, i_ref)
+
+        _hypothesis.append(h[i])
+        _reference.append(r[i])
+        _rouge.append(i_rouge['rouge_l/f_score']*100)
+        _bleu1.append(i_bleu[0])
+        _bleu2.append(i_bleu[1])
+        _bleu3.append(i_bleu[2])
+        _bleu4.append(i_bleu[3])
 
         print("hyp:",h[i],"\nref:",r[i])
         print('performance: {:.2f} {}'
             .format(i_rouge['rouge_l/f_score']*100 ,' '.join([str(b) for b in i_bleu])))
         print("\n")
+
+    data = {'Hypothesis': _hypothesis, 'Reference': _reference, 'Rouge': _rouge,
+    'Bleu1': _bleu1, 'Bleu2': _bleu2, 'Bleu3': _bleu3, 'Bleu4': _bleu4}  
+
+    df = pd.DataFrame(data)
 
     #print('{} set has {} samples,\n'
     #        'sacrebleu: {},\n'
