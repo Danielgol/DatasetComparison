@@ -37,8 +37,8 @@ def calculate(hyps, refs):
 
         print("hyp:",h[i],"\nref:",r[i])
         print("Teste 2")
-        print('performance: {:.2f} {}'
-            .format(i_rouge['rouge_l/f_score']*100 ,' '.join([str(b) for b in i_bleu])))
+        #print('performance: {:.2f} {}'
+        #    .format(i_rouge['rouge_l/f_score']*100 ,' '.join([str(b) for b in i_bleu])))
         print("\n")
 
     #print('{} set has {} samples,\n'
