@@ -17,8 +17,8 @@ from bleu_local import compute_bleu
 def calculate(hyps, refs):
     tokenize = sacrebleu.DEFAULT_TOKENIZER
 
-    hyps = list(map(lambda elem: elem.split(' '), hyps))
-    refs = list(map(lambda elem: elem.split(' '), refs))
+    hyps = list(map(lambda elem: list(filter((' ').__ne__, elem.split(' '))) , hyps))
+    refs = list(map(lambda elem: list(filter((' ').__ne__, elem.split(' '))), refs))
 
     for i in hyps[0]:
         print("'",i,"'")
