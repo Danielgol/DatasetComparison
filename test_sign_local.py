@@ -65,6 +65,7 @@ def calculate(hyps, refs):
     #        'CVPR ROUGE: {}'.format(split, len(h), sacrebleu_score, bleu, rouge_score))
 
     print('performance: {:.2f} {}'.format(rouge_score['rouge_l/f_score']*100 ,' '.join([str(b) for b in bleu])))
+    return df
 
 
 def compute_cvpr_bleu(hyps, refs, max_order=4):

@@ -29,7 +29,7 @@ def comparison(path_1, path_2):
 
 	refs_second = list(map(lambda elem: elem.split('.')[0], second))
 
-	calculate(hypotheses, refs_second)
+	return calculate(hypotheses, refs_second)
 
 	#with open('comparison.txt', 'w') as f:
 	#	for i in range(len(frase)):
