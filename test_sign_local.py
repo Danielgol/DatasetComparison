@@ -16,7 +16,6 @@ from bleu_local import compute_bleu
 def calculate(hyps, refs):
     tokenize = sacrebleu.DEFAULT_TOKENIZER
     for h, r in zip(hyps, refs):
-        assert len(h) == len(r)
 
         sacrebleu_score, _, _ = sacrebleu.corpus_bleu(h, [r], tokenize=tokenize), hyps, refs
         bleu = compute_cvpr_bleu(h, r)
