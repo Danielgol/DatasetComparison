@@ -14,7 +14,7 @@ from bleu_local import compute_bleu
 
 
 def calculate(hyps, refs):
-    tokenize = sacrebleu.DEFAULT_TOKENIZER if not args.eval_tokenized_bleu else 'none'
+    tokenize = sacrebleu.DEFAULT_TOKENIZER
     for h, r, split in zip(hyps, refs, args.valid_subset.split(',')):
         assert len(h) == len(r)
 
