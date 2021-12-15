@@ -13,24 +13,22 @@ import rouge_local as rouge
 from bleu_local import compute_bleu
 
 
-def calculate(hyps, refs):
+def calculate(h, r):
     tokenize = sacrebleu.DEFAULT_TOKENIZER
-    for h, r, split in zip(hyps, refs, args.valid_subset.split(',')):
-        assert len(h) == len(r)
 
-        sacrebleu_score, _, _ = sacrebleu.corpus_bleu(h, [r], tokenize=tokenize), hyps, refs
-        bleu = compute_cvpr_bleu(h, r)
-        rouge_score = rouge.rouge(h, r)
+    sacrebleu_score, _, _ = sacrebleu.corpus_bleu(h, [r], tokenize=tokenize), hyps, refs
+    bleu = compute_cvpr_bleu(h, r)
+    rouge_score = rouge.rouge(h, r)
 
-        for i in range(len(h)):
+    for i in range(len(h)):
             print(h[i], r[i]+"\n")
 
-        print('{} set has {} samples,\n'
-              'sacrebleu: {},\n'
-              'CVPR BLEU scripts: {}\n'
-              'CVPR ROUGE: {}'.format(split, len(h), sacrebleu_score, bleu, rouge_score))
+    #print('{} set has {} samples,\n'
+    #        'sacrebleu: {},\n'
+    #        'CVPR BLEU scripts: {}\n'
+    #        'CVPR ROUGE: {}'.format(split, len(h), sacrebleu_score, bleu, rouge_score))
 
-        print('performance: {:.2f} {}'.format(rouge_score['rouge_l/f_score']*100 ,' '.join([str(b) for b in bleu])))
+    print('performance: {:.2f} {}'.format(rouge_score['rouge_l/f_score']*100 ,' '.join([str(b) for b in bleu])))
 
 
 def compute_cvpr_bleu(hyps, refs, max_order=4):
