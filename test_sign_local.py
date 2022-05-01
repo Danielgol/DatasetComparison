@@ -23,6 +23,7 @@ def calculate(hyps, refs):
     h = [" ".join(hyp) for hyp in hyps]
     r = [" ".join(ref) for ref in refs]
 
+    # https://www.programcreek.com/python/example/111992/sacrebleu.corpus_bleu
     sacrebleu_score, _, _ = sacrebleu.corpus_bleu(h, [r], tokenize=tokenize), hyps, refs
     bleu = compute_cvpr_bleu(h, r)
     rouge_score = rouge.rouge(h, r)
